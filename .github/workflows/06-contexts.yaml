@@ -9,11 +9,18 @@ on:
         type: boolean
         default: false
 
+env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: 'job'
+      MY_OVERWRITTEN_VAR: 'job'
     steps:
-      - name: Display information
+      - name: GitHub Information
         run: |
           echo "Event name: ${{github.event_name}}"
           echo "Ref: ${{github.ref}}"
@@ -22,6 +29,12 @@ jobs:
           echo "Workflow: ${{github.workflow}}"
           echo "Run ID: ${{github.run_id}}"
           echo "Run number: ${{github.run_number}}"
-      - name: Retrieve variable
+      - name: Variable Information
         run: |
           echo "Variable value: ${{vars.SOME_VAR}}"
+      - name: Env Information
+        env:
+          MY_OVERWRITTEN_VAR: 'step'
+        run: |
+          echo "MY_WORKFLOW_VAR = ${{env.MY_WORKFLOW_VAR}}"
+          echo "MY_OVERWRITTEN_VAR = ${{env.MY_OVERWRITTEN_VAR}}"
