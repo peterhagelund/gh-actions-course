@@ -5,6 +5,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 04-using-actions/react-app
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -14,8 +17,9 @@ jobs:
           node-version: '22.x'
       - name: Install Dependecies
         run: npm ci
-        working-directory: 04-using-actions/react-app
-        
+      - name: Run Unit Tests
+        run: npm test
+
     # 0. Check out the code from the repository
     # 1. Install deps of our react application
     # 2. Execute automated tests
