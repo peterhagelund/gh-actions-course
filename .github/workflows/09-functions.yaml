@@ -9,25 +9,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print PR title
-        run: echo "${{github.event.pull_request.title}}"
+        run: echo "${{ github.event.pull_request.title }}"
       - name: Print PR labels
         run: |
           cat  << EOF
-          ${{toJSON(github.event.pull_request.labels)}}
+          ${{ toJSON(github.event.pull_request.labels) }}
           EOF
       - name: Bug step
-        if: ${{!cancelled() && contains(github.event.pull_request.title, 'fix')}}
+        if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix') }}
         run: echo "This is a bug fix"
       - name: Skipped step
-        if: ${{success()}}
+        if: ${{ success() }}
         run: echo "Previous step(s) succeeded"
       - name: Executed step
-        if: ${{failure()}}
+        if: ${{ failure() }}
         run: echo "Previous step(s) failed"
       - name: Executed step unless workflow is cancelled
-        if: ${{!cancelled()}}
+        if: ${{ !cancelled() }}
         run: echo "Workflow was not cancelled"
         # Negating a function with ! requires the expression to be inside the brackets
       - name: Executed step if workflow is cancelled
-        if: ${{cancelled()}}
+        if: ${{ cancelled() }}
         run: echo "Workflow was cancelled"

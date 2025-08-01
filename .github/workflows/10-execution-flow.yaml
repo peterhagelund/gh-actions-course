@@ -20,12 +20,12 @@ jobs:
         run: echo "Linting and building project"
   unit-test:
     runs-on: ubuntu-latest
-    continue-on-error: ${{inputs.ignore-test-failure}}
+    continue-on-error: ${{ inputs.ignore-test-failure }}
     steps:
       - name: Unit Test
         run: echo "Running unit tests"
       - name: Optionally failing tests
-        if: ${{!inputs.pass-unit-tests}}
+        if: ${{ !inputs.pass-unit-tests }}
         run: exit 1
   deploy-nonprod:
     runs-on: ubuntu-latest

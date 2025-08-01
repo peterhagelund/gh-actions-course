@@ -20,32 +20,32 @@ jobs:
           step_var2: "This is a lowercase env var"
           # Yaml and GH Actions allow dashes in var names but the shell does *not*
         run: |
-          echo "Step env var: ${{env.STEP_VAR}}"
+          echo "Step env var: ${{ env.STEP_VAR }}"
           echo "Another step env var: $step_var2"
-          echo "Job env var: ${{env.JOB_VAR}}"
-          echo "Workflow env var: ${{env.WORKFLOW_VAR}}"
-          echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
+          echo "Job env var: ${{ env.JOB_VAR }}"
+          echo "Workflow env var: ${{ env.WORKFLOW_VAR }}"
+          echo "Overwritten env var: ${{ env.OVERWRITTEN_VAR }}"
       - name: Overwrite job var
         env:
           OVERWRITTEN_VAR: "This is overwritten in a step"
         run: |
-          echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
+          echo "Overwritten env var: ${{ env.OVERWRITTEN_VAR }}"
   echo-default:
     runs-on: ubuntu-latest
     env:
-      STAGING_VAR: ${{vars.STAGING_VAR || 'NOT STAGING'}}
+      STAGING_VAR: ${{ vars.STAGING_VAR || 'NOT STAGING' }}
     steps:
       - name: Print Var Information
         run: |
-          echo "Repository variable: ${{vars.REPO_VAR}}"
-          echo "Staging variable: ${{env.STAGING_VAR}}"
+          echo "Repository variable: ${{ vars.REPO_VAR }}"
+          echo "Staging variable: ${{ env.STAGING_VAR }}"
   echo-staging:
     runs-on: ubuntu-latest
     env:
-      STAGING_VAR: ${{vars.STAGING_VAR || 'NOT STAGING'}}
+      STAGING_VAR: ${{ vars.STAGING_VAR || 'NOT STAGING' }}
     environment: staging
     steps:
       - name: Print Var Information
         run: |
-          echo "Repository variable: ${{vars.REPO_VAR}}"
-          echo "Staging variable: ${{env.STAGING_VAR}}"
+          echo "Repository variable: ${{ vars.REPO_VAR }}"
+          echo "Staging variable: ${{ env.STAGING_VAR }}"
