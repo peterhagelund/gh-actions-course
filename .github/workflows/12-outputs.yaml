@@ -30,6 +30,8 @@ jobs:
           echo "output1=value1" >> "$GITHUB_OUTPUT"
           echo "output2=value2" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
+      - name: Mistake
+        run: |
           echo "mistake=true" > "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
   deploy:
