@@ -27,6 +27,7 @@ jobs:
       - name: Executed step unless workflow is cancelled
         if: ${{!cancelled()}}
         run: echo "Workflow was not cancelled"
+        # Negating a function with ! requires the expression to be inside the brackets
       - name: Executed step if workflow is cancelled
         if: ${{cancelled()}}
         run: echo "Workflow was cancelled"
