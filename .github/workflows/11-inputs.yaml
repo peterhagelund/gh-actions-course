@@ -8,6 +8,7 @@ on:
         description: Skip deployment
         default: false
       target:
+        type: environment
         required: true
         description: Which environment the workflow will target
       tag:
