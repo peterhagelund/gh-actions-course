@@ -37,6 +37,10 @@ jobs:
         run: |
           echo "MY_WORKFLOW_VAR = ${{env.MY_WORKFLOW_VAR}}"
           echo "MY_OVERWRITTEN_VAR = ${{env.MY_OVERWRITTEN_VAR}}"
+      - name: Var Information
+        run: |
+          echo "Repository variable: ${{vars.REPO_VAR}}"
+          echo "Staging variable: ${{vars.STAGING_VAR}}"
   echo-data2:
     runs-on: ubuntu-latest
     steps:
