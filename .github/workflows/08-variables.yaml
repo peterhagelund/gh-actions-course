@@ -1,0 +1,34 @@
+name: 08 - Variables
+
+on:
+  push: 
+  workflow_dispatch: 
+
+env:
+  WORKFLOW_VAR: "This is an env workflow var"
+  OVERWRITTEN_VAR: "This will be overwritten"
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    env:
+      JOB_VAR: "This an env job var"
+      OVERWRITTEN_VAR: "This is the overwritten variable"
+    steps:
+      - name: Print Env Vars
+        env:
+          STEP_VAR: "This is an env step var"
+          step_var2: "This is a lowercase env var"
+          # Yaml and GH Actions allow dashes in var names but the shell does *not*
+        run: |
+          echo "Step env var: ${{env.STEP_VAR}}"
+          echo "Another step env var: $step_var2"
+          echo "Job env var: ${{env.JOB_VAR}}"
+          echo "Workflow env var: ${{env.WORKFLOW_VAR}}"
+          echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
+      - name: Overwrite job var
+        env:
+          OVERWRITTEN_VAR: "This is overwritten in a step"
+        run: |
+          echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
+          
