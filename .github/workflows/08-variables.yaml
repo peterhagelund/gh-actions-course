@@ -31,4 +31,7 @@ jobs:
           OVERWRITTEN_VAR: "This is overwritten in a step"
         run: |
           echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
-          
+      - name: Print Var Information
+        run: |
+          echo "Repository variable: ${{vars.REPO_VAR}}"
+          echo "Staging variable: ${{vars.STAGING_VAR}}"
