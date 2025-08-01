@@ -31,6 +31,17 @@ jobs:
           OVERWRITTEN_VAR: "This is overwritten in a step"
         run: |
           echo "Overwritten env var: ${{env.OVERWRITTEN_VAR}}"
+  echo2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Var Information
+        run: |
+          echo "Repository variable: ${{vars.REPO_VAR}}"
+          echo "Staging variable: ${{vars.STAGING_VAR}}"
+  echo-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
       - name: Print Var Information
         run: |
           echo "Repository variable: ${{vars.REPO_VAR}}"
