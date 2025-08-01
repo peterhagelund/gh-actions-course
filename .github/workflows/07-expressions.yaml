@@ -1,4 +1,5 @@
 name: 07 - Expressions
+run-name: 07 - Expressions | DEBUG is ${{inputs.debug && 'ON' || 'OFF'}}
 
 on:
   push:
@@ -13,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '[debug] Print start-up data'
-        if: ${{inputs.debug}}
+        if: inputs.debug
         run: |
           echo "Triggered by ${{github.event_name}}"
           echo "Ref: ${{github.ref}}"
           echo "SHA: ${{github.sha}}"
           echo "Runner OS: ${{runner.os}}"
       - name: '[debug] Print when triggered from main'
-        if: ${{inputs.debug && github.ref == 'refs/heads/main'}}
+        if: inputs.debug && github.ref == 'refs/heads/main'
         run: |
           echo "Triggered from main"
       - name: Greeting
