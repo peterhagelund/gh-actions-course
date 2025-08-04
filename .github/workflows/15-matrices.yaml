@@ -43,7 +43,7 @@ jobs:
         shape: [circle, square]
         size: [small, large]
         include:
-          - colors: red
+          - color: red
             shape: triangle
     steps:
       - name: Dummy
