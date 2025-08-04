@@ -11,7 +11,9 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     environment: ${{ inputs.target-env }}
+    env:
+      some_env_value: ${{ vars.SOME_ENV_VALUE || 'default' }}
     steps:
       - name: Echo variable
         run: |
-          echo "Env variable: ${{ vars.SOME_ENV_VALUE }}"
+          echo "Env variable: ${{ env.some_env_value }}"
