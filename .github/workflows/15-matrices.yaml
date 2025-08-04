@@ -45,7 +45,11 @@ jobs:
         include:
           # Opacity will be added to all jobs as it's not an override
           - opacity: 50
-          # A new job for red-triangle- but the size facet is *not* added automatically
+          - color: red
+            opacity: 75
+          - shape: circle
+            opacity: 100
+          # A new job for red-triangle-- but the size and opacity facets are *not* added automatically
           - color: red
             shape: triangle
     steps:
