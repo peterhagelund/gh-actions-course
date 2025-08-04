@@ -3,6 +3,10 @@ name: 14 - Artifacts
 on:
   workflow_dispatch:
 
+env:
+  coverage-name: coverage-${{ github.sha }}
+  app-name: app-${{ github.sha }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,14 +34,14 @@ jobs:
       - name: Upload test coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
+          name: ${{ env.coverage-name }}
           path: 14-artifacts/react-app/coverage
       - name: Build
         run: npm run build
       - name: Upload build files
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: ${{ env.app-name }}
           path: 14-artifacts/react-app/build
   deploy:
     runs-on: ubuntu-latest
@@ -46,14 +50,14 @@ jobs:
       - name: Download test coverage report
         uses: actions/download-artifact@v4
         with:
-          name: coverage
+          name: ${{ env.coverage-name }}
           path: coverage
       - name: Show test coverage folderstructure
         run: ls -R
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: app
+          name: ${{ env.app-name }}
           path: build
       - name: Show build folder structure
         run: ls -R
