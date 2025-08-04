@@ -14,6 +14,7 @@ jobs:
   e2e-test:
     runs-on: ubuntu-latest
     environment: staging
+    needs: deploy-staging
     steps:
       - name: End to end test
         run: |
@@ -21,6 +22,7 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-latest
     environment: prod
+    needs: e2e-test
     steps:
       - name: Deploy to prod
         run: |
