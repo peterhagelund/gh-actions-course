@@ -55,6 +55,9 @@ jobs:
             shape: triangle
           # Opacity will be added to all jobs as it's not an override
           - opacity: 50
+          - color: green
+            shape: circle
+            size: medium
     steps:
       - name: Dummy
         run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"-${{ matrix.opacity }}
