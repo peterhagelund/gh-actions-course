@@ -4,9 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       use-cache:
+        description: Whether or not to use cache
         type: boolean
         default: true
-        description: Whether or not to use cache
+      node-version:
+        description: The version of node to use
+        type: choice
+        options:
+          - 18.x
+          - 20.x
+          - 21.x
+          - 22.x
+        default: 22.x
 
 jobs:
   build:
@@ -20,7 +29,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: "22.x"
+          node-version: ${{ inputs.node-version }}
       - name: Install dependencies
         run: npm ci
       - name: Testing
