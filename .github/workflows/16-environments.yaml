@@ -19,11 +19,19 @@ jobs:
       - name: End to end test
         run: |
           echo "Running end to end tests in staging"
-  deploy-prod:
+  deploy-prod-frontend:
     runs-on: ubuntu-latest
     environment: prod
     needs: e2e-test
     steps:
       - name: Deploy to prod
         run: |
-          echo "Deploying to prod"
+          echo "Deploying prod frontend"
+  deploy-prod-backend:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: e2e-test
+    steps:
+      - name: Deploy to prod
+        run: |
+          echo "Deploying prod backend"
