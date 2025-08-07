@@ -1,7 +1,15 @@
-name: 17 - Custom Actions - Composite
-
+name: 17 - 1 - Custom Actions - Composite
+run-name: 17 - 1 - Custom Actions - Composite for ${{ inputs.target-env }}
 on:
   workflow_dispatch:
+    inputs:
+      target-env:
+        description: Which environment to target for dependency installation
+        type: choice
+        options:
+          - dev
+          - prod
+        default: dev
 
 env:
   working-directory: 17-custom-actions/react-app
@@ -19,6 +27,7 @@ jobs:
         with:
           node-version: 22.x
           working-directory: ${{ env.working-directory }}
+          target-env: ${{ inputs.target-env }}
       - name: Tests
         run: npm run test
       - name: Build
