@@ -8,7 +8,7 @@ inputs:
     required: false
   working-directory:
     description: The working directory of the application
-    default: "."
+    default: .
     required: false
 
 runs:
@@ -17,7 +17,7 @@ runs:
     - name: Set up NodeJS version ${{ inputs.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: $${{ inputs.node-version }}
+        node-version: ${{ inputs.node-version }}
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v3
