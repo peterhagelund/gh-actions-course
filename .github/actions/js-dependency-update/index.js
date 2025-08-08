@@ -48,7 +48,7 @@ async function run() {
     return;
   }
   const execOptions = {
-    cwd: workingDirectory
+    cwd: inputs.workingDirectory
   };
   const exitCode = await exec.exec('npm update', [], execOptions);
   if (exitCode != 0) {
