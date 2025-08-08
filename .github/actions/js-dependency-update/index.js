@@ -47,7 +47,7 @@ async function run() {
     return;
   }
   const gitStatus = await exec.getExecOutput('git status -s package*.json', [], {
-    cmd: workingDirectory
+    cwd: workingDirectory
   });
   if (gitStatus.exitCode != 0) {
     core.setFailed(`[js-dependency-update]: command "git status -s" failed with exit code ${exitCode}`);
