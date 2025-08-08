@@ -4,8 +4,8 @@ const github = require('@actions/github');
 
 const name = 'js-dependency-update';
 const configureGit = async () => {
-  await execute(`git config --global user.name automation`);
-  await execute(`git config --global user.email automation@nowhere.org`);
+  await exec.exec(`git config --global user.name automation`);
+  await exec.exec(`git config --global user.email automation@nowhere.org`);
 }
 const validateBranchName = ({ branchName }) => /^[a-zA-Z0-9_\-\./]+$/.test(branchName)
 const validateDirectoryName = ({ directoryName }) => /^[a-zA-Z0-9_\-/]+$/.test(directoryName)
@@ -52,19 +52,19 @@ async function run() {
   };
   const exitCode = await exec.exec('npm update', [], execOptions);
   if (exitCode != 0) {
-    setFailed(`[${name}]: command "npm update" failed with exit code ${exitCode}`);
+    setFailed(`[${name}]: Command "npm update" failed with exit code ${exitCode}`);
     return;
   }
   const gitStatus = await exec.getExecOutput(`git status -s package*.json`, [], execOptions);
   if (gitStatus.exitCode != 0) {
-    setFailed(`[j${name}]: command "git status -s" failed with exit code ${exitCode}`);
+    setFailed(`[${name}]: Command "git status -s" failed with exit code ${exitCode}`);
     return;
   }
   if (gitStatus.stdout.length == 0) {
-    info(`[${name}]: There are no updates at this time`);
+    core.info(`[${name}]: There are no updates at this time`);
     return;
   }
-  info(`[${name}]: There are updates available`);
+  core.info(`[${name}]: There are updates available`);
   await configureGit();
   await exec.exec(`git checkout -b ${headBranch}`, [], execOptions);
   await exec.exec(`git add package.json package-lock.json`, [], execOptions);
@@ -81,8 +81,8 @@ async function run() {
       head: headBranch
     });
   } catch (e) {
-    error(e.message);
-    setFailed(`[${name}]: Failed to create PR`);
+    core.error(e.message);
+    core.setFailed(`[${name}]: Failed to create PR`);
   }
 }
 
