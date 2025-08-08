@@ -12,3 +12,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Check for dependency updates
         uses: ./.github/actions/js-dependency-update
+        with:
+          base-branch: main
+          target-branch: update-dependencies
+          working-directory: 17-custom-actions/react-app
+          github-token: very-secret
+          debug: "true"
