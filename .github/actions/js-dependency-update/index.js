@@ -45,8 +45,8 @@ async function run() {
     return;
   }
   core.info('[js-dependency-update]: There are updates available');
-  await exec.exec(`git config --global user.name=automation`);
-  await exec.exec(`git config --global user.email=automation@nowhere.org`);
+  await exec.exec(`git config --global user.name automation`);
+  await exec.exec(`git config --global user.email automation@nowhere.org`);
   await exec.exec(`git checkout -b ${targetBranch}`, [], execOptions);
   await exec.exec(`git add package.json package-lock.json`, [], execOptions);
   await exec.exec(`git commit -m "chore: update dependencies"`, [], execOptions);
