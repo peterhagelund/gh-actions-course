@@ -56,7 +56,7 @@ async function run() {
   if (gitStatus.stdout.length > 0) {
     core.info('[js-dependecy-update]: There are updates available');
   } else {
-    core.info('[js-dependecy-update]: There are updates at this time');
+    core.info('[js-dependecy-update]: There are no updates at this time');
   }
 }
 
