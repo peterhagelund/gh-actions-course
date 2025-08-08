@@ -47,13 +47,20 @@ async function run() {
     setFailed(e.message);
     return;
   }
+  const { baseBranch, headBranch, gitHubToken, workingDirectory, debug } = inputs;
   const execOptions = {
-    cwd: inputs.workingDirectory
+    cwd: workingDirectory
   };
+  if (debug) {
+    core.info(`[${name}]: Running "npm update"...`);
+  }
   const exitCode = await exec.exec('npm update', [], execOptions);
   if (exitCode != 0) {
     setFailed(`[${name}]: Command "npm update" failed with exit code ${exitCode}`);
     return;
+  }
+  if (debug) {
+    core.info(`[${name}]: Running "git status -s package*.json"...`);
   }
   const gitStatus = await exec.getExecOutput(`git status -s package*.json`, [], execOptions);
   if (gitStatus.exitCode != 0) {
