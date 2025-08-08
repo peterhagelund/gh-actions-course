@@ -7,7 +7,7 @@ on:
       base-branch:
         type: string
         default: main
-      target-branch:
+      head-branch:
         type: string
         default: update-dependencies
       working-directory:
@@ -28,7 +28,7 @@ jobs:
         uses: ./.github/actions/js-dependency-update
         with:
           base-branch: ${{ inputs.base-branch }}
-          target-branch: ${{ inputs.target-branch }}
+          head-branch: ${{ inputs.head-branch }}
           working-directory: ${{ inputs.working-directory }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           debug: "true"
