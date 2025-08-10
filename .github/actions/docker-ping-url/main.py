@@ -1,9 +1,12 @@
-from os import environ
+from os import getenv
 def main():
-  print("Hello, World!")
-  gh_env = {n: v for (n, v) in environ.items() if n.startswith("GITHUB_")}
-  for n, v in gh_env.items():
-    print(f"{n} = {v}")
+  url = getenv("INPUT_URL")
+  max_attempts = getenv("INPUT_MAX-ATTEMPTS")
+  delay = getenv("INPUT_DELAY")
+  print(f"url = {url}")
+  print(f"max_attempts = {max_attempts}")
+  print(f"delay = {delay}")
+
 
 if __name__ == '__main__':
   main()
