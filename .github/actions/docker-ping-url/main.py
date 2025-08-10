@@ -29,9 +29,8 @@ def run():
   print(f"max_attempts = {max_attempts}")
   print(f"delay = {delay}")
   reachable = is_url_reachable(url, max_attempts, delay)
-  if reachable:
-    exit(0)
-  exit(1)
+  if not reachable:
+    raise Exception(f"URL {url} not reachable")
 
 
 if __name__ == '__main__':
