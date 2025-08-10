@@ -6,7 +6,7 @@ on:
     inputs:
       url:
         type: string
-        default: https://github.com
+        default: "https://www.google.com"
       max-attempts:
         type: number
         default: 3
