@@ -32,7 +32,7 @@ const getInputs = () => {
     debug: debug
   };
 }
-const setupLogger = ({ debug, prefix } = { debug: false, prefix: '[js-dependency-update]' }) = {
+const setupLogger = ({ debug, prefix } = { debug: false, prefix: '[js-dependency-update]' }) => ({
   debug: (message) => {
     if (debug) {
       core.info(`${prefix}[D]: ${message}`);
@@ -44,12 +44,12 @@ const setupLogger = ({ debug, prefix } = { debug: false, prefix: '[js-dependency
   error: (message) => {
     core.error(`${prefix}[E]: ${message}`);
   }
-};
+});
 
 async function run() {
   try {
     const { baseBranch, headBranch, gitHubToken, workingDirectory, debug } = getInputs();
-    const logger = setupLogger({ debug: debug });
+    const logger = setupLogger({ debug: debug, prefix: '[js-dependency-update]' });
     logger.debug(`base-branch is ${baseBranch}`);
     logger.debug(`head-branch is ${headBranch}`);
     logger.debug(`working-directory is ${workingDirectory}`);
