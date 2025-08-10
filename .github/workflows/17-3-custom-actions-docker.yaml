@@ -24,5 +24,5 @@ jobs:
         uses: ./.github/actions/docker-ping-url
         with:
           url: ${{ inputs.url }}
-          max-attempts: ${{ inputs.max-attempts }}
+          max_attempts: ${{ inputs.max_attempts }}
           delay: ${{ inputs.delay }}
