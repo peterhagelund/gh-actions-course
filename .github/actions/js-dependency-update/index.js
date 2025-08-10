@@ -70,7 +70,7 @@ async function run() {
       core.setFailed('git status failed');
       return;
     }
-    const updatesAvailable = (gitStatus.stdout.length == 0);
+    const updatesAvailable = (gitStatus.stdout.length > 0);
     core.setOutput('updates-available', updatesAvailable);
     if (!updatesAvailable) {
       logger.info(`There are no updates at this time`);
