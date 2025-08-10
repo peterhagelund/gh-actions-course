@@ -1,0 +1,19 @@
+name: Ping URL
+description: Ping URL until max attempts have been tried
+
+inputs:
+  url:
+    description: The URL to Ping
+    required: true
+  max_attempts:
+    description: The max attempts
+    default: "10"
+    required: false
+  delay:
+    description: Delay in seconds between each attempt
+    default: "5"
+    required: false
+
+runs:
+  using: docker
+  image: Dockerfile
