@@ -67,7 +67,7 @@ async function run() {
     const gitStatus = await exec.getExecOutput(`git status -s package*.json`, [], execOptions);
     if (gitStatus.exitCode != 0) {
       logger.error(`Command "git status -s" failed with exit code ${exitCode}`)
-      setFailed('git status failed');
+      core.setFailed('git status failed');
       return;
     }
     if (gitStatus.stdout.length == 0) {
@@ -90,7 +90,7 @@ async function run() {
       head: headBranch
     });
   } catch (e) {
-    setFailed(e.message);
+    core.setFailed(e.message);
     return;
   }
 }
