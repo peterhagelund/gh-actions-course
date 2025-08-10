@@ -5,7 +5,7 @@ inputs:
   url:
     description: The URL to Ping
     required: true
-  max_attempts:
+  max-attempts:
     description: The max attempts
     default: "10"
     required: false
