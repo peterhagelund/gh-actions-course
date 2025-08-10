@@ -1,7 +1,7 @@
 from os import environ
 def main():
   print("Hello, World!")
-  gh_env = {n: v for (n, v) in environ if n.startswith("GITHUB_")}
+  gh_env = {n: v for (n, v) in environ.items() if n.startswith("GITHUB_")}
   for n, v in gh_env.items():
     print(f"{n} = {v}")
 
