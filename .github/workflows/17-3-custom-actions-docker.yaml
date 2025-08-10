@@ -7,7 +7,7 @@ on:
       url:
         type: string
         default: "https://www.google.com"
-      max-attempts:
+      max_attempts:
         type: number
         default: 3
       delay:
@@ -18,9 +18,9 @@ jobs:
   ping-url:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping URL
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Check for dependency updates
+      - name: Ping URL
         uses: ./.github/actions/docker-ping-url
         with:
           url: ${{ inputs.url }}
