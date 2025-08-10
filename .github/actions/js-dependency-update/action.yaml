@@ -20,6 +20,9 @@ inputs:
     description: Whether to output debug messages
     default: "false"
     required: false
+outputs:
+  updates-available:
+    description: Whether there are updates available
 
 runs:
   using: node20
