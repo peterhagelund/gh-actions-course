@@ -2,6 +2,7 @@ from os import getenv
 from sys import exit
 from requests import get
 from time import sleep
+from typing import Any
 
 def is_url_reachable(url: str, max_attempts: int, delay: float) -> bool:
   print(f"Pinging URL {url}...")
@@ -21,14 +22,20 @@ def is_url_reachable(url: str, max_attempts: int, delay: float) -> bool:
     print(f"Exception during ping: {e}")
   return False
 
+def set_output(file_path: str, key: str, value: Any):
+  with open(file_path, "a") as f:
+    print(f"{key}={value}", file=f)
+
 def run():
   url = getenv("INPUT_URL")
   max_attempts = int(getenv("INPUT_MAX_ATTEMPTS"))
   delay = float(getenv("INPUT_DELAY"))
+  file_path = getenv("GITHUB_OUTPUT")
   print(f"url = {url}")
   print(f"max_attempts = {max_attempts}")
   print(f"delay = {delay}")
   reachable = is_url_reachable(url, max_attempts, delay)
+  set_output(file_path, "url-reachable", reachable)
   if not reachable:
     raise Exception(f"URL {url} not reachable")
 
