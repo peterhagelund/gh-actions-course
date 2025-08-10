@@ -39,7 +39,7 @@ const setupLogger = ({ debug, prefix } = { debug: false, prefix: '[js-dependency
     }
   },
   info: (message) => {
-    core.error(`${prefix}[I]: ${message}`);
+    core.info(`${prefix}[I]: ${message}`);
   },
   error: (message) => {
     core.error(`${prefix}[E]: ${message}`);
