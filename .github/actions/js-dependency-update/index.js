@@ -71,6 +71,7 @@ async function run() {
       return;
     }
     const updatesAvailable = (gitStatus.stdout.length == 0);
+    core.setOutput('updates-available', updatesAvailable);
     if (!updatesAvailable) {
       logger.info(`There are no updates at this time`);
       return;
@@ -90,7 +91,6 @@ async function run() {
       base: baseBranch,
       head: headBranch
     });
-    core.setOutput('updates-available', updatesAvailable)
   } catch (e) {
     core.setFailed(e.message);
     return;
