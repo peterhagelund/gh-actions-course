@@ -9,6 +9,7 @@ jobs:
     with:
       target-directory: dummy-dir
   e2e-tests:
+    needs: deploy
     uses: peterhagelund/gh-actions-course-example-e2e/.github/workflows/e2e.yaml@main
     secrets:
       access-token: ${{ secrets.GH_ACTIONS_TOKEN }}
