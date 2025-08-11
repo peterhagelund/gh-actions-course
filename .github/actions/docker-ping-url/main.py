@@ -1,25 +1,26 @@
 from os import getenv
-from sys import exit
 from requests import get
 from time import sleep
 from typing import Any
 
 def is_url_reachable(url: str, max_attempts: int, delay: float) -> bool:
   print(f"Pinging URL {url}...")
-  try:
-    for attempt in range(max_attempts):
-      print(f"Attempt number {attempt+1}...")
+  for attempt in range(max_attempts):
+    print(f"Attempt number {attempt+1}...")
+    success = False
+    try:
       response = get(url)
       status_code = response.status_code
       print(f"Status code is {status_code}")
-      if status_code == 200:
-        print("Success")
-        return True
-      print("Sleeping...")
-      sleep(delay)
-    print("Unable to ping URL successfully")
-  except Exception as e:
-    print(f"Exception during ping: {e}")
+      success = status_code == 200
+    except Exception as e:
+      print(f"Exception during ping: {e}")
+    if success:
+      print("Success")
+      return True
+    print("Sleeping...")
+    sleep(delay)
+  print("Unable to ping URL successfully")
   return False
 
 def set_output(file_path: str, key: str, value: Any):
